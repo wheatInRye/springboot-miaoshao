@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fq.dao.GoodsMapper">
+
+    <resultMap id="list" type="goodsVo">
+        <id column="id" property="id"></id>
+        <result column="goods_name" property="goodsName"></result>
+        <result column="goods_title" property="goodsTitle"></result>
+        <result column="goods_img" property="goodsImg"></result>
+        <result column="goods_detail" property="goodsDetail"></result>
+        <result column="goods_price" property="goodsPrice"></result>
+        <result column="goods_stock" property="goodsStock"></result>
+        <result column="start_date" property="startDate"></result>
+        <result column="end_ate" property="endDate"></result>
+        <result column="stock_count" property="stockCount"></result>
+    </resultMap>
+
+    <select id="getGoodsVo" resultMap="list">
+        SELECT g.*,mg.stock_count, mg.start_date, mg.end_date, mg.miaosha_price FROM miaosha_goods mg LEFT JOIN goods g ON mg.goods_id = g.id
+
+    </select>
+</mapper>
